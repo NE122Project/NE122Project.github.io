@@ -10,53 +10,79 @@
 <br>
 	<table>
 	<tr>
-	<img src="Start_Game.jpg" onClick="changeState('Level')" width="20%" height="20%">
+	<img style ="padding:20px" src="Start_Game.jpg" onClick="changeState('Level')" width="20%" height="20%">
 	</tr>
 	<tr>
-	<img src="Tutorial_Button.jpg" onClick="changeState('Tutorial')" width="20%" height="20%">
+	<img style ="padding:20px" src="Tutorial_Button.jpg" onClick="changeState('Tutorial')" width="20%" height="20%">
 	</tr>
 	<tr>
-	<img src="file:///Users/vaniedwardson/Documents/waterloo/NE122Project/Level_Select.jpg" onClick="changeState('Level')" width="20%" height="20%">
+	<img style ="padding:20px" src="Level_Select.jpg" onClick="changeState('Level_Select')" width="20%" height="20%">
 	</tr>
 	</table>
 </div>
 <div id="Tutorial">
-	<h1>Tutorial</h1>
-	<p>The aim of the game is to catch the right molecule names in the little basket, the basket is controlled by the right and left arrow keys</p>
-	<button onclick="changeState('Start_Screen')"></button>
+	<button onclick="changeState('Start_Screen')" style="position: bottom"></button>
+</div>
+<div id="Level_Select">
+	<table id = "Level_Select_Table">
+	<tr>
+		<td rowspan="2">
+			<img src="Level_1.jpg" width="100%">
+		</td>
+		<td>
+			<img src="Level_2.jpg" width="100%">
+		</td>
+		<td rowspan="2">
+			<img src="Level_4.jpg" width="100%">
+		</td>
+		<td>
+			<img src="Level_5.jpg" width="100%">
+		</td>
+		<td rowspan="2">
+			<img src="Level_7.jpg" width="100%">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="Level_3.jpg" width="100%">
+		</td>
+		<td>
+			<img src="Level_6.jpg" width="100%">
+		</td>
+	</tr>
+	</table>
 </div>
 <div id="Level">
-	<script>
-
-var myGamePiece;
-
-function startGame() {
-    myGameArea.start();
-    myGamePiece = new component(30, 30, "red", 10, 120);
-}
-
-var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    }
-}
-
-function component(width, height, color, x, y) {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    ctx = myGameArea.context;
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-}
-
-</script>
-<button onclick="changeState('Start_Screen')"></button>
+	<div id="Falling_Text_Container">
+		<span id="Falling_Text_1" class="Falling_Text">Option 1</span>
+		<span id="Falling_Text_2" class="Falling_Text">Option 2</span>
+		<span id="Falling_Text_3" class="Falling_Text">Option 3</span>
+		<span id="Falling_Text_4" class="Falling_Text">Option 4</span>
+		<span id="Falling_Text_5" class="Falling_Text">Option 5</span>
+	</div>
+	<div id = "Sprite"></div>
+	<script type="text/javascript">
+		var spriteX = 300;
+		document.addEventListener('keypress', (event) => {
+			const keyName = event.key;
+			if (keyName == "a") {
+				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
+				spriteX -= 4;
+			} else if (keyName === "d") {
+				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
+				spriteX += 4;
+			}
+		})
+		function testMove() {
+			container = document.getElementById('Falling_Text_Container');
+			if (getComputedStyle(container).getPropertyValue('top') === '0px') {
+				var option = Math.floor((5*spriteX)/window.innerWidth)+1;
+			}
+			window.requestAnimationFrame(testMove);
+		}
+		testMove();
+	</script>
+<!--<button onclick="changeState('Start_Screen')"></button> -->
 </div>
 <div id="Game_Over">
 	<h1 style="color: limegreen">GAME OVER</h1>
@@ -65,7 +91,7 @@ function component(width, height, color, x, y) {
 </body>
 
 <script>
-	possibleStates = ["Start_Screen", "Tutorial", "Level", "Game_Over", "Win"];
+	possibleStates = ["Start_Screen", "Tutorial", "Level", "Game_Over", "Win", "Level_Select"];
 	function changeState(newState) {
 		for (x = 0; x < possibleStates.length; x++) {
 			document.getElementById(possibleStates[x]).style.display = "none";

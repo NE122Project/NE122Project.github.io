@@ -60,17 +60,17 @@
 		<span id="Falling_Text_4" class="Falling_Text">Option 4</span>
 		<span id="Falling_Text_5" class="Falling_Text">Option 5</span>
 	</div>
-	<div id = "Sprite"></div>
+	<div id = "Sprite"><img src="Sprite.jpg"></div>
 	<script type="text/javascript">
 		var spriteX = 300;
 		document.addEventListener('keypress', (event) => {
 			const keyName = event.key;
 			if (keyName == "a") {
 				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
-				spriteX -= 4;
+				spriteX -= 7;
 			} else if (keyName === "d") {
 				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
-				spriteX += 4;
+				spriteX += 7;
 			}
 		})
 		function testMove() {

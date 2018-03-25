@@ -100,7 +100,9 @@
 <!--<button onclick="changeState('Start_Screen')"></button> -->
 </div>
 <div id="Game_Over">
-	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="10%">
+	<img src="Game_Over.jpg">
+	<br>
+	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="15%">
 </div>
 <div id="Win"> </div>
 </body>
@@ -113,6 +115,6 @@
 		}
 		document.getElementById(newState).style.display = "block";
 	}
-	changeState("Start_Screen");
+	changeState("Game_Over");
 </script>
 </html>

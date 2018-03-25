@@ -68,11 +68,11 @@
 
 	</div>
 	<div id="Falling_Text_Container">
-		<span id="Falling_Text_1" class="Falling_Text">Option 1</span>
-		<span id="Falling_Text_2" class="Falling_Text">Option 2</span>
-		<span id="Falling_Text_3" class="Falling_Text">Option 3</span>
-		<span id="Falling_Text_4" class="Falling_Text">Option 4</span>
-		<span id="Falling_Text_5" class="Falling_Text">Option 5</span>
+		<span id="Falling_Text_1" class="Falling_Text">Butane</span>
+		<span id="Falling_Text_2" class="Falling_Text">Octane</span>
+		<span id="Falling_Text_3" class="Falling_Text">Nonane</span>
+		<span id="Falling_Text_4" class="Falling_Text">Pentane</span>
+		<span id="Falling_Text_5" class="Falling_Text">Hexane</span>
 	</div>
 	<div id = "Sprite"><img src="Sprite.jpg"></div>
 	<div id = "Molecule"></div>
@@ -96,6 +96,20 @@
 			window.requestAnimationFrame(testMove);
 		}
 		testMove();
+		var column1 = window.innerWidth/5;
+		var column2 = 2*window.innerWidth/5;
+		var column3 = 3*window.innerWidth/5;
+		var column4 = 4*window.innerWidth/5;
+		var column5 = 5*window.innerWidth/5;
+		function NextLevel(){
+			if (getPosition(spriteX) >= column1 &  getPosition(spriteX) <= column2){
+				changeState("Win")
+			}
+			else {
+				changeState("Game_Over")
+		}
+			}
+		NextLevel()
 	</script>
 <!--<button onclick="changeState('Start_Screen')"></button> -->
 </div>
@@ -115,6 +129,36 @@
 		}
 		document.getElementById(newState).style.display = "block";
 	}
-	changeState("Game_Over");
+	changeState("Start_Screen");
 </script>
 </html>
+
+
+
+
+
+
+
+
+<!--
+	Tasks
+		Demo (Just in Case)
+			Set one column to be correct
+				if sprite in correct column changestate to YOU WIN
+				else GAME OVER
+			Add names of molecules just for demo...
+			Add img in center of level div of butane
+		Actual THINGY (BEST CASE SCENARIO SO KIRAN IS HAPPY)
+			how to change correct column
+				have column number be the same as postion of correct prefix in array
+					(0 to 4)
+					create a variable called correct that changes depending on prefix (maybe using indices)
+			if in correct column
+
+
+
+
+
+
+
+

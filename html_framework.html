@@ -53,6 +53,20 @@
 	</table>
 </div>
 <div id="Level">
+	<div>
+		<table>
+			<tr>
+				<img id ="Heart1" src="Heart.jpg">
+			</tr>
+			<tr>
+				<img id ="Heart2" src="Heart.jpg">
+			</tr>
+			<tr>
+				<img id ="Heart3" src="Heart.jpg">
+			</tr>
+		</table>
+
+	</div>
 	<div id="Falling_Text_Container">
 		<span id="Falling_Text_1" class="Falling_Text">Option 1</span>
 		<span id="Falling_Text_2" class="Falling_Text">Option 2</span>
@@ -61,6 +75,7 @@
 		<span id="Falling_Text_5" class="Falling_Text">Option 5</span>
 	</div>
 	<div id = "Sprite"><img src="Sprite.jpg"></div>
+	<div id = "Molecule"></div>
 	<script type="text/javascript">
 		var spriteX = 300;
 		document.addEventListener('keypress', (event) => {
@@ -85,7 +100,7 @@
 <!--<button onclick="changeState('Start_Screen')"></button> -->
 </div>
 <div id="Game_Over">
-	<h1 style="color: limegreen">GAME OVER</h1>
+	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="10%">
 </div>
 <div id="Win"> </div>
 </body>

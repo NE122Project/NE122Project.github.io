@@ -10,7 +10,7 @@ html {
 
 div {
 	color: black ;
-	font-family: Brush Script MT;
+	font-family: BUNGEE;
 	border: 6px;
 	border-color: black;
 	font-size: 35px;
@@ -108,7 +108,7 @@ table {
 
 @keyframes moveItems {
 	from {top: 1px;}
-	to {top: 85%;}
+	to {top: 100%;}
 }
 
 #Falling_Text_Container {
@@ -118,13 +118,16 @@ table {
 	width: 100%;
 	border-color: black;
 	animation-name: moveItems;
-	animation-duration: 15s;
+	animation-duration: 5s;
 	animation-timing-function: linear;
 
 }
 
 #Molecule {
-
+	position: absolute;
+	left: 18%;
+	top: 10%;
+	border-color: black;
 }
 
 .Falling_Text {

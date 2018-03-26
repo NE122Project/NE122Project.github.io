@@ -1,5 +1,5 @@
 var partlib = [
-    //0: numbers 
+    //0: numbers
     [
         'N-', //00
         '1-', //01
@@ -27,7 +27,7 @@ var partlib = [
 
     //1: alkane number prefixes
     [
-        
+
         'prop-',//00
         'meth', //01
         'eth', //02
@@ -58,7 +58,7 @@ var partlib = [
         'yn',//08
         'yn-',//09
     ],
-    
+
     //3: side group numbers
     [
         'di', //00
@@ -198,6 +198,7 @@ function Level7(){
 }*/
 
 //Function that shuffles array
+
 function shuffle(a){
     var j, x, i;
     for(i = a.length-1; i>0; i--){
@@ -219,7 +220,7 @@ function LevelGen(x){
         case 5: arr = Level5(); break;
         case 6: arr = Level6(); break;
         case 7: arr = Level7(); break;*/
-        default: return None;
+     default: return None;
     }
     shuffle(arr);
     return arr;
@@ -240,15 +241,15 @@ function namesplit(str){
 }
 
 //Displays Molecules (with images) in a sketchy table on an HTML File that is now gone :(
-totarray = LevelGen(1);
+/*totarray = LevelGen(1);
     for(var i=0; i<totarray.length; i++){
     var num = i+1;
     var st4 = 'm'+(num.toString())+'n';
-    var nam = totarray[i][1];
-    document.getElementById(st4).innerHTML = nam;
+    //var nam = totarray[i][1];
+    //document.getElementById(st4).innerHTML = nam;
     var st5 = 'm'+(num.toString())+'i';
     var im = totarray[i][0];
     document.getElementById(st5).setAttribute('src', im);
-	
+
 }
-namesplit(totarray[0][2]);
+namesplit(totarray[0][2]); */

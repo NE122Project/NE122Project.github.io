@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="Falling_Text_Container">
+		<span id="Falling_Text_1" class="Falling_Text">Butane</span>
+		<span id="Falling_Text_2" class="Falling_Text">Octane</span>
+		<span id="Falling_Text_3" class="Falling_Text">Nonane</span>
+		<span id="Falling_Text_4" class="Falling_Text">Pentane</span>
+		<span id="Falling_Text_5" class="Falling_Text">Hexane</span>
+	</div>
+	<div><img id = "Molecule" src="http://nomenclature101.com/nom/en/img/mols/4.png"></div>
+<script type="text/javascript">
+	function Level1(){
+    var m1 = ["http://nomenclature101.com/nom/en/img/mols/23.png", "3,4-dimethylhexane", "013004300515106200"];
+    var m2 = ["http://nomenclature101.com/nom/en/img/mols/4.png", "2,2,4-trimethylpentane", '012012004301515105200'];
+    var m3 = ["http://nomenclature101.com/nom/en/img/mols/18.png", "2-methylnonane", "002515109200"];
+    var m4 = ["http://nomenclature101.com/nom/en/img/mols/1.png","2,2,3-trimethylbutane", '012012003301515104200'];
+    var m5 = ["http://nomenclature101.com/nom/en/img/mols/35.png","4-methylnonane", '004515109200'];
+    var m6 = ["http://nomenclature101.com/nom/en/img/mols/27.png", "3-ethylhexane", '003516106200'];
+    var m7 = ["http://nomenclature101.com/nom/en/img/mols/62.png", "ethylcyclopentane", '516514105200'];
+    var m8 = ["http://nomenclature101.com/nom/en/img/mols/29.png", "3-methyl-4-propylheptane", '003517004100205107200'];
+    var m9 = ["http://nomenclature101.com/nom/en/img/mols/37.png", "6-ethyl-3,3,4-trimethylnonane", '006518013013004301517109200'];
+    var m10 = ["http://nomenclature101.com/nom/en/img/mols/56.png", "butylcyclohexane", '104205514106200'];
+    return [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10];
+}
+	console.log(Level1()[1])
+
+	document.getElementById("Falling_Text_1").innerHTML = (Level1())[1][1];
+	document.getElementById("Falling_Text_2").innerHTML = (Level1())[2][1];
+	document.getElementById("Falling_Text_3").innerHTML = (Level1())[3][1];
+	document.getElementById("Falling_Text_4").innerHTML = (Level1())[4][1];
+	document.getElementById("Falling_Text_5").innerHTML = (Level1())[5][1];
+	document.getElementById("Molecule").innerHTML = (Level1())[2][0];
+</script>
+
+</body>
+</html>

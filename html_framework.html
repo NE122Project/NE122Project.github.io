@@ -52,7 +52,18 @@
 	</tr>
 	</table>
 </div>
+
+<div id="Game_Over">
+	<img src="Game_Over.jpg">
+	<br>
+	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="15%">
+</div>
+<div id="Win">HI </div>
+</body>
+
 <div id="Level">
+	<span id = "Background_Molecule"></span>
+
 	<div>
 		<table>
 			<tr>
@@ -74,54 +85,51 @@
 		<span id="Falling_Text_4" class="Falling_Text">Pentane</span>
 		<span id="Falling_Text_5" class="Falling_Text">Hexane</span>
 	</div>
-	<div id = "Sprite"><img src="Sprite.jpg"></div>
-	<div id = "Molecule"></div>
-	<script type="text/javascript">
-		var spriteX = 300;
-		document.addEventListener('keypress', (event) => {
-			const keyName = event.key;
-			if (keyName == "a") {
-				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
-				spriteX -= 7;
-			} else if (keyName === "d") {
-				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
-				spriteX += 7;
-			}
-		})
-		function testMove() {
-			container = document.getElementById('Falling_Text_Container');
-			if (getComputedStyle(container).getPropertyValue('top') === '0px') {
-				var option = Math.floor((5*spriteX)/window.innerWidth)+1;
-			}
-			window.requestAnimationFrame(testMove);
-		}
-		testMove();
-		var column1 = window.innerWidth/5;
-		var column2 = 2*window.innerWidth/5;
-		var column3 = 3*window.innerWidth/5;
-		var column4 = 4*window.innerWidth/5;
-		var column5 = 5*window.innerWidth/5;
-		function NextLevel(){
-			if (getPosition(spriteX) >= column1 &  getPosition(spriteX) <= column2){
-				changeState("Win")
-			}
-			else {
-				changeState("Game_Over")
-		}
-			}
-		NextLevel()
-	</script>
-<!--<button onclick="changeState('Start_Screen')"></button> -->
-</div>
-<div id="Game_Over">
-	<img src="Game_Over.jpg">
-	<br>
-	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="15%">
-</div>
-<div id="Win"> </div>
-</body>
+	<div>
+		<h3 style="text-align: center"> Molecule to name:</h3>
+		<br>
+		<img id = "Molecule" src="http://nomenclature101.com/nom/en/img/mols/4.png">
+	</div>
+<script type="text/javascript">
+	function Level1(){
+    var m1 = ["http://nomenclature101.com/nom/en/img/mols/23.png", "3,4-dimethylhexane", "013004300515106200"];
+    var m2 = ["http://nomenclature101.com/nom/en/img/mols/4.png", "2,2,4-trimethylpentane", '012012004301515105200'];
+    var m3 = ["http://nomenclature101.com/nom/en/img/mols/18.png", "2-methylnonane", "002515109200"];
+    var m4 = ["http://nomenclature101.com/nom/en/img/mols/1.png","2,2,3-trimethylbutane", '012012003301515104200'];
+    var m5 = ["http://nomenclature101.com/nom/en/img/mols/35.png","4-methylnonane", '004515109200'];
+    var m6 = ["http://nomenclature101.com/nom/en/img/mols/27.png", "3-ethylhexane", '003516106200'];
+    var m7 = ["http://nomenclature101.com/nom/en/img/mols/62.png", "ethylcyclopentane", '516514105200'];
+    var m8 = ["http://nomenclature101.com/nom/en/img/mols/29.png", "3-methyl-4-propylheptane", '003517004100205107200'];
+    var m9 = ["http://nomenclature101.com/nom/en/img/mols/37.png", "6-ethyl-3,3,4-trimethylnonane", '006518013013004301517109200'];
+    var m10 = ["http://nomenclature101.com/nom/en/img/mols/56.png", "butylcyclohexane", '104205514106200'];
+    return [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10];
+}
 
-<script>
+	console.log(Level1()[1])
+
+function shuffle(a){
+    var j, x, i;
+    for(i = a.length-1; i>0; i--){
+        j = Math.floor(Math.random()*(i+1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+}
+
+
+
+	document.getElementById("Falling_Text_1").innerHTML = (Level1())[1][1];
+	document.getElementById("Falling_Text_2").innerHTML = (Level1())[2][1];
+	document.getElementById("Falling_Text_3").innerHTML = (Level1())[3][1];
+	document.getElementById("Falling_Text_4").innerHTML = (Level1())[4][1];
+	document.getElementById("Falling_Text_5").innerHTML = (Level1())[5][1];
+	document.getElementById("Molecule").innerHTML = (Level1())[2][0];
+</script>
+
+	<div id = "Sprite"><img src="Sprite.jpg"></div>
+	<script type="text/javascript">
+
 	possibleStates = ["Start_Screen", "Tutorial", "Level", "Game_Over", "Win", "Level_Select"];
 	function changeState(newState) {
 		for (x = 0; x < possibleStates.length; x++) {
@@ -129,17 +137,40 @@
 		}
 		document.getElementById(newState).style.display = "block";
 	}
-	changeState("Start_Screen");
-</script>
+	changeState("Level");
+
+		var spriteX = 300;
+		document.addEventListener('keypress', (event) => {
+			const keyName = event.key;
+			if (keyName === "a" || keyName == "A") {
+				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
+				spriteX -= 7;
+			} else if (keyName === "d" || keyName === "D") {
+				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
+				spriteX += 7;
+			}
+		})
+		//Assigns correct_option with the right number in array corresponding to what column is the correct one
+
+		function correctColumn () {
+			Correct_Option = 1;
+		}
+		correctColumn ();
+		function testMove() {
+			container = document.getElementById('Falling_Text_Container');
+			pixelLocation = getComputedStyle(container).getPropertyValue('top');
+			if (parseInt(pixelLocation.slice(0, pixelLocation.length-2))/window.innerHeight > .85) {
+				var option = Math.floor((5*spriteX)/window.innerWidth)+1;
+				if (option != Correct_Option) {
+					changeState("Game_Over");
+				}
+			}
+			window.requestAnimationFrame(testMove);
+		}
+		testMove();
+	</script>
+</div>
 </html>
-
-
-
-
-
-
-
-
 <!--
 	Tasks
 		Demo (Just in Case)
@@ -153,7 +184,7 @@
 				have column number be the same as postion of correct prefix in array
 					(0 to 4)
 					create a variable called correct that changes depending on prefix (maybe using indices)
-			if in correct column
+			if in correct column -->
 
 
 

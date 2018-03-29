@@ -10,7 +10,7 @@ html {
 
 div {
 	color: black ;
-	font-family: BUNGEE;
+	font-family: Arial;
 	border: 6px;
 	border-color: black;
 	font-size: 35px;
@@ -118,8 +118,10 @@ table {
 	width: 100%;
 	border-color: black;
 	animation-name: moveItems;
-	animation-duration: 5s;
+	animation-duration: 15s;
 	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	font-size: 24px
 
 }
 

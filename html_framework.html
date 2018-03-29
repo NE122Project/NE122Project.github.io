@@ -21,13 +21,13 @@
 	</table>
 </div>
 <div id="Tutorial">
-	<button onclick="changeState('Start_Screen')" style="position: bottom"></button>
+	<button onclick="changeState('Start_Screen')" style="position: bottom">Back to Start Menu</button>
 </div>
 <div id="Level_Select">
 	<table id = "Level_Select_Table">
 	<tr>
 		<td rowspan="2">
-			<img src="Level_1.jpg" width="100%">
+			<img src="Level_1.jpg" onclick="changeState('Level')" width="100%">
 		</td>
 		<td>
 			<img src="Level_2.jpg" width="100%">
@@ -51,6 +51,7 @@
 		</td>
 	</tr>
 	</table>
+	<button onclick="changeState('Start_Screen')" style="position: bottom">Back to Start Menu</button>
 </div>
 
 <div id="Game_Over">
@@ -58,7 +59,11 @@
 	<br>
 	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="15%">
 </div>
-<div id="Win">HI </div>
+<div id="Win">
+	<img src ="win.png">
+	<br>
+		<img src="Home_Button.jpg" onClick="fireMeUp()" width="10%" height="15%">
+</div>
 </body>
 
 <div id="Level">
@@ -92,6 +97,7 @@
 var Lives = 3;
 var correctColumn = 1;
 var deductedLife = false
+var counter = 0;
 
 	function testMove() {
 		container = document.getElementById('Falling_Text_Container');
@@ -102,10 +108,20 @@ var deductedLife = false
 			if (option != correctColumn) {
 				Lives = Lives - 1;
 				document.getElementById('Heart' + (Lives + 1).toString()).style.display = "none";
+			//} else {
+				//counter = counter + 1;
+
 				if (Lives === 0){
 					changeState("Game_Over");
 				}
+			} else {
+			counter = counter + 1;
+			console.log(counter);
+		}
+			if (counter == 2) {
+				changeState("Win");
 			}
+			//}
 			deductedLife = true;
 		}
 		window.requestAnimationFrame(testMove);
@@ -233,7 +249,10 @@ function fireMeUp(){
 				have column number be the same as postion of correct prefix in array
 					(0 to 4)
 					create a variable called correct that changes depending on prefix (maybe using indices)
-			if in correct column -->
+			if in correct column
+		Add counter to keep score
+		If > 10, go to Win Screen
+		Optional: Combine all molecules into one level or make Level2---->
 
 <!--<script type="text/javascript">
 	function Level2(){
@@ -272,43 +291,3 @@ function fireMeUp(){
 }
 
 </script>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

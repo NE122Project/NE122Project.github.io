@@ -92,7 +92,7 @@
 var Lives = 3;
 var correctColumn = 1;
 var deductedLife = false
-
+//separates the screen into five columns and then checks to see if the sprite is in the right columnonce the falling text container has reached 80-90% of the screen height also removes a life i fin the wrong column
 	function testMove() {
 		container = document.getElementById('Falling_Text_Container');
 		pixelLocation = getComputedStyle(container).getPropertyValue('top');
@@ -110,10 +110,12 @@ var deductedLife = false
 		}
 		window.requestAnimationFrame(testMove);
 	}
+//Game loop
 function Start_Game() {
 	setInterval(onTimerTick,10000)
 	testMove()
 }
+//Function that is looping
 function onTimerTick() {
 
 //Technically is the library for level one
@@ -168,6 +170,7 @@ function onTimerTick() {
     		},
     	];
     }
+    // randomnly picks the correct molecule and then removes it from a cloned version of the level one array and then generates 4 incorrect options
 	var allPossibleMolecules = Level1().slice(0);
 	var correctMoleculeIndex = Math.floor(Math.random()*10);
 	var correctMoleculeInformation = allPossibleMolecules[correctMoleculeIndex];
@@ -197,6 +200,8 @@ function onTimerTick() {
 	document.getElementById("Background_Molecule").src = correctMoleculeInformation.url;
 }
 
+//Changes between divs
+
 	possibleStates = ["Start_Screen", "Tutorial", "Level", "Game_Over", "Win", "Level_Select"];
 	function changeState(newState) {
 		for (x = 0; x < possibleStates.length; x++) {
@@ -206,18 +211,20 @@ function onTimerTick() {
 	}
 	changeState("Start_Screen");
 
+//Function that controls the Sprites movements in the X-direction
+
 		var spriteX = 300;
 		document.addEventListener('keypress', (event) => {
 			const keyName = event.key;
 			if (keyName === "a" || keyName == "A") {
 				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
-				spriteX -= 7;
+				spriteX -= 10;
 			} else if (keyName === "d" || keyName === "D") {
 				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
-				spriteX += 7;
+				spriteX += 10;
 			}
 		})
-
+// Starts the game on click of the start button
 function fireMeUp(){
 	Start_Game()
 	changeState("Level")

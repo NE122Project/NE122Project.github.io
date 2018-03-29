@@ -1,21 +1,21 @@
-html {
+html{
 	height: 100vh;
 }
 
- body {
+ body{
             height: 100%;
             margin: 0;
             padding: 0
         }
 
-div {
+div{
 	color: black ;
 	font-family: Arial;
 	border: 6px;
 	border-color: black;
 	font-size: 35px;
 }
-h1 {
+h1{
 	text-align: center;
 	color: white;
 	background-color: black;
@@ -118,7 +118,7 @@ table {
 	width: 100%;
 	border-color: black;
 	animation-name: moveItems;
-	animation-duration: 15s;
+	animation-duration: 10s;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	font-size: 24px

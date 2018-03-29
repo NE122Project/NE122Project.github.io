@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nomenclature Game</title>
+	<link rel="stylesheet" type="text/css" href="style.CSS">
+</head>
+<body>
+<div id="Start_Screen" >
+	<img src="title.jpg" width="60%" height="60%">
+<br>
+	<table>
+	<tr>
+	<img style ="padding:20px" src="Start_Game.jpg" onClick="fireMeUp()" width="20%" height="20%">
+	</tr>
+	<tr>
+	<img style ="padding:20px" src="Tutorial_Button.jpg" onClick="changeState('Tutorial')" width="20%" height="20%">
+	</tr>
+	<tr>
+	<img style ="padding:20px" src="Level_Select.jpg" onClick="changeState('Level_Select')" width="20%" height="20%">
+	</tr>
+	</table>
+</div>
+<div id="Tutorial">
+	<button onclick="changeState('Start_Screen')" style="position: bottom"></button>
+</div>
+<div id="Level_Select">
+	<table id = "Level_Select_Table">
+	<tr>
+		<td rowspan="2">
+			<img src="Level_1.jpg" width="100%">
+		</td>
+		<td>
+			<img src="Level_2.jpg" width="100%">
+		</td>
+		<td rowspan="2">
+			<img src="Level_4.jpg" width="100%">
+		</td>
+		<td>
+			<img src="Level_5.jpg" width="100%">
+		</td>
+		<td rowspan="2">
+			<img src="Level_7.jpg" width="100%">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="Level_3.jpg" width="100%">
+		</td>
+		<td>
+			<img src="Level_6.jpg" width="100%">
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="Game_Over">
+	<img src="Game_Over.jpg">
+	<br>
+	<img src="Home_Button.jpg" onClick="changeState('Start_Screen')" width="10%" height="15%">
+</div>
+<div id="Win">HI </div>
+</body>
+
+<div id="Level">
+	<img id = "Background_Molecule" src="http://nomenclature101.com/nom/en/img/mols/4.png"></img>
+
+	<div>
+		<table>
+			<tr>
+				<img id ="Heart1" src="Heart.jpg">
+			</tr>
+			<tr>
+				<img id ="Heart2" src="Heart.jpg">
+			</tr>
+			<tr>
+				<img id ="Heart3" src="Heart.jpg">
+			</tr>
+		</table>
+
+	</div>
+	<div id="Falling_Text_Container">
+		<span id="Falling_Text_1" class="Falling_Text">Butane</span>
+		<span id="Falling_Text_2" class="Falling_Text">Octane</span>
+		<span id="Falling_Text_3" class="Falling_Text">Nonane</span>
+		<span id="Falling_Text_4" class="Falling_Text">Pentane</span>
+		<span id="Falling_Text_5" class="Falling_Text">Hexane</span>
+	</div>
+	<div id = "Sprite"><img src="Sprite.jpg"></div>
+<script>
+
+// determines the size of each column and checks to see if the sprites is in the correct one
+var Lives = 3;
+var correctColumn = 1;
+var deductedLife = false
+
+	function testMove() {
+		container = document.getElementById('Falling_Text_Container');
+		pixelLocation = getComputedStyle(container).getPropertyValue('top');
+		var percentDown = parseInt(pixelLocation.slice(0, pixelLocation.length-2))/window.innerHeight
+		if (percentDown > .8 && percentDown < .9 && !deductedLife) {
+			var option = Math.floor((5*spriteX)/window.innerWidth)+1;
+			if (option != correctColumn) {
+				Lives = Lives - 1;
+				document.getElementById('Heart' + (Lives + 1).toString()).style.display = "none";
+				if (Lives === 0){
+					changeState("Game_Over");
+				}
+			}
+			deductedLife = true;
+		}
+		window.requestAnimationFrame(testMove);
+	}
+function Start_Game() {
+	setInterval(onTimerTick,10000)
+	testMove()
+}
+function onTimerTick() {
+
+//Technically is the library for level one
+	function Level1(){
+		return [
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/23.png",
+    			'name': "3,4-dimethylhexane"
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/4.png",
+    			'name': "2,2,4-trimethylpentane"
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/18.png",
+    			'name': "2-methylnonane",
+
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/1.png",
+    			'name':"2,2,3-trimethylbutane",
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/35.png",
+    			'name':"4-methylnonane",
+
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/27.png",
+    			'name': "3-ethylhexane",
+
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/62.png",
+    			'name': "ethylcyclopentane",
+
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/29.png",
+    			'name': "3-methyl-4-propylheptane",
+
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/37.png",
+    			'name': "6-ethyl-3,3,4-trimethylnonane",
+
+    		},
+    		{
+    			'url': "http://nomenclature101.com/nom/en/img/mols/56.png",
+    			'name': "butylcyclohexane",
+
+    		},
+    	];
+    }
+	var allPossibleMolecules = Level1().slice(0);
+	var correctMoleculeIndex = Math.floor(Math.random()*10);
+	var correctMoleculeInformation = allPossibleMolecules[correctMoleculeIndex];
+	allPossibleMolecules.splice(correctMoleculeIndex, 1);
+
+	otherMolecules = [];
+	for (var x = 0; x < 4; x++) {
+		var chosenOption = Math.floor(Math.random()*allPossibleMolecules.length);
+		otherMolecules[x] = allPossibleMolecules[chosenOption];
+		allPossibleMolecules.splice(chosenOption, 1);
+	}
+
+	possibleColumns = [1, 2, 3, 4, 5];
+
+	deductedLife = false;
+
+	correctColumn = Math.floor(Math.random()*5)+1;
+	document.getElementById("Falling_Text_" + correctColumn.toString()).innerHTML = correctMoleculeInformation.name;
+	possibleColumns.splice(correctColumn-1, 1);
+
+	for (var x = 0; x < 4; x++) {
+		var chosenColumn = Math.floor(Math.random()*possibleColumns.length);
+		document.getElementById("Falling_Text_" + possibleColumns[chosenColumn].toString()).innerHTML = otherMolecules[x].name;
+		possibleColumns.splice(chosenColumn, 1);
+	}
+
+	document.getElementById("Background_Molecule").src = correctMoleculeInformation.url;
+}
+
+	possibleStates = ["Start_Screen", "Tutorial", "Level", "Game_Over", "Win", "Level_Select"];
+	function changeState(newState) {
+		for (x = 0; x < possibleStates.length; x++) {
+			document.getElementById(possibleStates[x]).style.display = "none";
+		}
+		document.getElementById(newState).style.display = "block";
+	}
+	changeState("Start_Screen");
+
+		var spriteX = 300;
+		document.addEventListener('keypress', (event) => {
+			const keyName = event.key;
+			if (keyName === "a" || keyName == "A") {
+				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
+				spriteX -= 7;
+			} else if (keyName === "d" || keyName === "D") {
+				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
+				spriteX += 7;
+			}
+		})
+
+function fireMeUp(){
+	Start_Game()
+	changeState("Level")
+	onTimerTick()
+}
+
+	</script>
+</div>
+</html>
+<!--
+		Actual THINGY (BEST CASE SCENARIO SO KIRAN IS HAPPY)
+			how to change correct column
+				have column number be the same as postion of correct prefix in array
+					(0 to 4)
+					create a variable called correct that changes depending on prefix (maybe using indices)
+			if in correct column -->
+
+<!--<script type="text/javascript">
+	function Level2(){
+		return
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/115.png',
+    	'name': 'octan-1-ol', '108206001500'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/237.png',
+    	'name': 'trichloromethane', '301400101200'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/107.png',
+    	'name': '2-methylpentane-2,4-diol', '002517105207012004300500'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/231.png',
+    	'name': '2-chloro-2-methylpropane', '002403002515103200'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/104.png',
+    	'name': '2,4-dimethylheptan-4-ol', '004300515107206004500'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/103.png',
+    	'name': '2,2-dimethylpropane-1,3-diol', '002300515103200'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/295.png',
+    	'name': 'oct-1-yn-3-ol','113001209003500'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/318.png',
+    	'name': '1,4-dichlorobut-2-yne','004300400114002202'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/130.png',
+    	'name': 'hex-3-yne','106003202'];
+    [{
+    	'url': 'http://nomenclature101.com/nom/en/img/mols/105.png',
+    	'name': '2-ethylhexane-1,3-diol','002516106207011003300500'];
+    return [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10];
+}
+
+</script>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

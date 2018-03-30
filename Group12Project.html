@@ -83,6 +83,10 @@
 		</table>
 
 	</div>
+<div>
+<h2 id = "score_name">Score: <span  id = "Score">0</span></h2>
+</div>
+
 	<div id="Falling_Text_Container">
 		<span id="Falling_Text_1" class="Falling_Text">Butane</span>
 		<span id="Falling_Text_2" class="Falling_Text">Octane</span>
@@ -116,7 +120,11 @@ var counter = 0;
 				}
 			} else {
 			counter = counter + 1;
-			console.log(counter);
+			score = counter * 1000;
+			console.log(score);
+		  document.getElementById("score_name").style.left = "1200px";
+			document.getElementById("Score").style.right = "-65%"
+			document.getElementById("Score").innerHTML = score;
 		}
 			if (counter == 5) {
 				changeState("Win");
@@ -182,10 +190,90 @@ function onTimerTick() {
     			'name': "butylcyclohexane",
 
     		},
-    	];
-    }
+    		    {
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/115.png',
+    			'name': 'octan-1-ol'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/237.png',
+    			'name': 'trichloromethane'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/107.png',
+    			'name': '2-methylpentane-2,4-diol'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/231.png',
+    			'name': '2-chloro-2-methylpropane'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/104.png',
+    			'name': '2,4-dimethylheptan-4-ol'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/103.png',
+    			'name': '2,2-dimethylpropane-1,3-diol'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/295.png',
+    			'name': 'oct-1-yn-3-ol'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/318.png',
+    			'name': '1,4-dichlorobut-2-yne'
+    		},
+   	 		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/130.png',
+    			'name': 'hex-3-yne'
+    		},
+   			{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/105.png',
+    			'name': '2-ethylhexane-1,3-diol'
+    		},
+    		{
+	 			'url': 'http://nomenclature101.com/nom/en/img/mols/269.png',
+	 			'name': '3,7-dimethyloct-6-enal'
+			},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/76.png',
+   				'name': 'cyclohexanecarboxylic acid'
+   			},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/186.png',
+   				'name': 'hexan-2-one',
+   			},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/116.png',
+   				'name': 'octan-3-ol',
+   			},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/65.png',
+   				'name': '4-dimethylheptanoic acid',
+  			},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/155.png',
+   				'name': 'butane-1,4-diamine'
+   			},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/158.png',
+   				'name': 'hexane-1,6-diamine'
+   			},
+    		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/238.png',
+    			'name': '3,7-dimethylnonanenitrile'
+    		},
+   			{
+   				'url': 'http://nomenclature101.com/nom/en/img/mols/198.png',
+   				'name': 'cyclohexanecarbonitrile'
+   			},
+    		{
+    			'url': 'http://nomenclature101.com/nom/en/img/mols/289.png',
+    			'name': 'prop-2-enenitrile'
+    		},
+    		];
+   	}
 	var allPossibleMolecules = Level1().slice(0);
-	var correctMoleculeIndex = Math.floor(Math.random()*10);
+	var correctMoleculeIndex = Math.floor(Math.random()*30);
 	var correctMoleculeInformation = allPossibleMolecules[correctMoleculeIndex];
 	allPossibleMolecules.splice(correctMoleculeIndex, 1);
 
@@ -227,10 +315,10 @@ function onTimerTick() {
 			const keyName = event.key;
 			if (keyName === "a" || keyName == "A") {
 				document.getElementById('Sprite').style.left = (spriteX-4) + "px";
-				spriteX -= 7;
+				spriteX -= 10;
 			} else if (keyName === "d" || keyName === "D") {
 				document.getElementById('Sprite').style.left = (spriteX+4) + "px";
-				spriteX += 7;
+				spriteX += 10;
 			}
 		})
 
@@ -252,42 +340,49 @@ function fireMeUp(){
 			if in correct column
 		Add counter to keep score
 		If > 10, go to Win Screen
-		Optional: Combine all molecules into one level or make Level2---->
+		Optional: Combine all molecules into one level or make Level2-->
 
 <!--<script type="text/javascript">
-	function Level2(){
-		return
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/115.png',
-    	'name': 'octan-1-ol', '108206001500'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/237.png',
-    	'name': 'trichloromethane', '301400101200'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/107.png',
-    	'name': '2-methylpentane-2,4-diol', '002517105207012004300500'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/231.png',
-    	'name': '2-chloro-2-methylpropane', '002403002515103200'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/104.png',
-    	'name': '2,4-dimethylheptan-4-ol', '004300515107206004500'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/103.png',
-    	'name': '2,2-dimethylpropane-1,3-diol', '002300515103200'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/295.png',
-    	'name': 'oct-1-yn-3-ol','113001209003500'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/318.png',
-    	'name': '1,4-dichlorobut-2-yne','004300400114002202'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/130.png',
-    	'name': 'hex-3-yne','106003202'];
-    [{
-    	'url': 'http://nomenclature101.com/nom/en/img/mols/105.png',
-    	'name': '2-ethylhexane-1,3-diol','002516106207011003300500'];
-    return [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10];
-}
+
+	{
+	 	url: 'http://nomenclature101.com/nom/en/img/mols/269.png',
+	 	name: '3,7-dimethyloct-6-enal'
+	},
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/76.png','
+   		name: cyclohexanecarboxylic acid',
+   	},
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/186.png',
+   		name: 'hexan-2-one',
+   	},
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/116.png',
+   		name: 'octan-3-ol',
+   	},
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/65.png','
+   		name: 4-dimethylheptanoic acid',
+  	},
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/155.png',
+   		name: 'butane-1,4-diamine','10420
+   	},
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/158.png',
+   		name: 'hexane-1,6-diamine','10620
+   	},
+    {
+    	url: 'http://nomenclature101.com/nom/en/img/mols/238.png',
+    	name: '3,7-dimethylnonanenitrile','00730
+    },
+   	{
+   		url: 'http://nomenclature101.com/nom/en/img/mols/198.png',
+   		name: 'cyclohexanecarbonitrile'
+   	},
+    {
+    	url: 'http://nomenclature101.com/nom/en/img/mols/289.png',
+    	name: 'prop-2-enenitrile'
+    },
 
 </script>-->

@@ -149,6 +149,20 @@ table {
 	border: 2px solid white;
 }
 
+#Score {
+	font-family: monospace;
+	position: absolute;
+	top: 0;
+	right: -15%;
+}
+
+#score_name {
+	font-family: monospace;
+	position: absolute;
+	top:0;
+	left: 1200px;
+}
+
 #Heart1 {
 	width: 3%;
     height: 3%;
